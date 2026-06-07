@@ -1,0 +1,38 @@
+# ── Secrets & credentials (NEVER commit) ─────────────────────────────
+.env
+.env.*
+*.key
+*.pem
+auth-profiles.json
+credentials/
+openclaw.json
+openclaw.json.*
+secrets/
+.secrets
+
+# ── Runtime memory & personal context (fills up per-user) ────────────
+# Keep the blank templates in agent/, but never commit a populated copy.
+agent/memory/
+agent/MEMORY.md
+**/memory/*.md
+**/MEMORY.md
+heartbeat-state.json
+
+# ── Sessions / logs / local state ────────────────────────────────────
+sessions/
+logs/
+*.log
+.openclaw/
+workspace-state.json
+
+# ── Web build / deps ─────────────────────────────────────────────────
+node_modules/
+dist/
+.cache/
+
+# ── OS / editor noise ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

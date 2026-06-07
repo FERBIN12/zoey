@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zoey — a personal AI agent that remembers you</title>
+<meta name="description" content="A starter kit for a personal AI agent with a stable identity, persistent file-based memory, and proactive-but-not-annoying behavior. A few markdown files, any LLM runtime." />
+<meta property="og:title" content="Zoey — a personal AI agent that remembers you" />
+<meta property="og:description" content="Stable identity. Persistent memory. Proactive, not annoying. A few markdown files, any LLM runtime, MIT licensed." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="brand-glyph">🪼</span> Zoey</a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#memory">Memory</a>
+      <a href="#loops">Proactivity</a>
+      <a href="#safety">Safety</a>
+      <a class="nav-cta" href="https://github.com/FERBIN12/zoey" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="pill reveal">MIT licensed · runtime-agnostic · no vector DB</div>
+    <h1 class="reveal">A personal AI agent that<br><span class="grad">actually remembers you.</span></h1>
+    <p class="lede reveal">Stable identity. Persistent memory. Proactive, but not annoying.<br>
+      A handful of markdown files, any LLM runtime, and a clear safety model.</p>
+    <div class="hero-cta reveal">
+      <a class="btn btn-primary" href="https://github.com/FERBIN12/zoey" target="_blank" rel="noopener">Get it on GitHub</a>
+      <a class="btn btn-ghost" href="#how">See how it works</a>
+    </div>
+
+    <blockquote class="bigquote reveal">
+      The agent wakes up with <em>no memory</em> every session — so a few markdown files
+      <strong>are</strong> its memory. Read them at startup, update them as you go, and the same
+      character persists indefinitely.
+    </blockquote>
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section class="cards">
+    <article class="card reveal">
+      <div class="card-ic">🧠</div>
+      <h3>Real continuity, zero infra</h3>
+      <p>Two-tier memory — raw daily logs distilled into a curated long-term file on a slow loop. No embeddings, no fine-tuning.</p>
+    </article>
+    <article class="card reveal">
+      <div class="card-ic">💓</div>
+      <h3>Proactive, with restraint</h3>
+      <p>A heartbeat loop checks your inbox and calendar and reaches out — but the default is silence. Companions that ping about nothing get muted.</p>
+    </article>
+    <article class="card reveal">
+      <div class="card-ic">🛡️</div>
+      <h3>A safety spine</h3>
+      <p>Every action is <em>internal</em> (read, learn → bold) or <em>external</em> (email, post → ask first). One rule makes real access safe.</p>
+    </article>
+    <article class="card reveal">
+      <div class="card-ic">📄</div>
+      <h3>Plain text, all the way down</h3>
+      <p>The agent's entire mind is editable in a text editor. Broke its personality? Edit the file. Roll it back with git.</p>
+    </article>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section">
+    <div class="sec-head reveal">
+      <span class="kicker">How it works</span>
+      <h2>A workspace contract, not a framework</h2>
+      <p>The runtime injects these files at startup. They're the system prompt — but living, editable, and persistent.</p>
+    </div>
+
+    <div class="split">
+      <div class="filetree reveal">
+<pre><span class="dir">agent/</span>
+  <span class="f">IDENTITY.md</span>   <span class="c">who the agent is        ┐</span>
+  <span class="f">SOUL.md</span>       <span class="c">how it behaves          │ the system</span>
+  <span class="f">AGENTS.md</span>     <span class="c">workspace rules         │ prompt, as</span>
+  <span class="f">USER.md</span>       <span class="c">who the human is        ┘ living files</span>
+  <span class="f">TOOLS.md</span>      <span class="c">environment notes</span>
+  <span class="f">HEARTBEAT.md</span>  <span class="c">proactivity checklist</span>
+  <span class="f">BOOTSTRAP.md</span>  <span class="c">one-time birth (self-deletes)</span>
+  <span class="dir">memory/</span>      <span class="c">daily logs + long-term</span>
+</pre>
+      </div>
+
+      <div class="codecard reveal">
+        <div class="code-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-title">startup algorithm</span></div>
+<pre><code><span class="k">on</span> session_start:
+  context = load(IDENTITY, SOUL, AGENTS)
+  <span class="k">if</span> main_session:
+    context += load(USER, MEMORY)   <span class="c"># private</span>
+  context += load(recent memory/*.md)
+  <span class="k">if</span> exists(BOOTSTRAP.md):
+    run_bootstrap()                 <span class="c"># once, then self-delete</span>
+  inject(context) <span class="k">into</span> system_prompt</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMORY -->
+  <section id="memory" class="section alt">
+    <div class="sec-head reveal">
+      <span class="kicker">Memory model</span>
+      <h2>Two tiers, like a human</h2>
+      <p>A noisy short-term journal, and a small long-term store you deliberately maintain.</p>
+    </div>
+    <div class="tier-grid">
+      <div class="tier reveal">
+        <div class="tier-tag raw">RAW</div>
+        <code>memory/YYYY-MM-DD.md</code>
+        <p>Today's events, verbatim. Cheap to write, never edited. Loaded for recent days.</p>
+      </div>
+      <div class="tier-arrow reveal">consolidate ⟶</div>
+      <div class="tier reveal">
+        <div class="tier-tag cur">CURATED</div>
+        <code>MEMORY.md</code>
+        <p>Distilled, durable knowledge. Small, hand-curated, and loaded <strong>only in private main sessions</strong> — never in group chats. That boundary is a security feature.</p>
+      </div>
+    </div>
+    <p class="footline reveal">No "mental notes." A session ends and working memory evaporates — so anything that matters gets written to a file. <strong>Text beats brain, every time.</strong></p>
+  </section>
+
+  <!-- LOOPS -->
+  <section id="loops" class="section">
+    <div class="sec-head reveal">
+      <span class="kicker">Proactivity</span>
+      <h2>Three input loops</h2>
+      <p>A companion needs more than request and response.</p>
+    </div>
+    <div class="loops">
+      <div class="loop reveal"><h4>Reactive</h4><p>A user message arrives, the agent responds. The standard loop.</p></div>
+      <div class="loop reveal"><h4>Heartbeat</h4><p>A slow timer hands the agent a chance to check things and reach out <em>only if something matters</em>. Batched to save tokens, biased toward silence.</p></div>
+      <div class="loop reveal"><h4>Cron</h4><p>Exact-time, isolated tasks ("9:00 AM Monday: summarize the week"). Runs outside the main session, delivers straight to a channel.</p></div>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section id="safety" class="section alt">
+    <div class="sec-head reveal">
+      <span class="kicker">The safety spine</span>
+      <h2>Bold inside. Cautious at the edge.</h2>
+    </div>
+    <div class="safety">
+      <div class="safe-col internal reveal">
+        <h4>Internal → do it boldly</h4>
+        <ul><li>Read files, explore, organize</li><li>Learn, search the web</li><li>Work inside the workspace</li></ul>
+      </div>
+      <div class="safe-col external reveal">
+        <h4>External → ask first</h4>
+        <ul><li>Send emails, posts, messages</li><li>Anything that leaves the machine</li><li>Anything you're uncertain about</li></ul>
+      </div>
+    </div>
+    <p class="footline reveal">One rule, enforced on every turn, is what makes it safe to hand an agent real access to your life.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="finale">
+    <h2 class="reveal">Build one this weekend.</h2>
+    <p class="reveal">Clone it, drop the files into your runtime, and just start talking. It writes its own identity and memory from there.</p>
+    <div class="hero-cta reveal">
+      <a class="btn btn-primary" href="https://github.com/FERBIN12/zoey" target="_blank" rel="noopener">Star it on GitHub ★</a>
+      <a class="btn btn-ghost" href="https://github.com/FERBIN12/zoey/blob/main/docs/architecture.md" target="_blank" rel="noopener">Read the architecture</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>🪼 <strong>Zoey</strong> — MIT licensed. Distills the agent-workspace pattern from
+    <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a> into a small, documented starter kit.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
