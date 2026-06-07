@@ -7,11 +7,9 @@
 Stable identity. Persistent, file-based memory. Proactive, but not annoying.
 Clone it, add a key (or use your local `claude`), and talk to it. It remembers across runs.
 
-[Quickstart](#quickstart) · [Architecture](docs/architecture.md) · [Memory model](docs/memory-model.md) · [Heartbeat loop](docs/heartbeat-loop.md) · [Live site](https://FERBIN12.github.io/zoey/)
-
-<br>
-
 ![Zoey architecture: the workspace markdown files load into the system prompt at startup, the LLM replies and writes memory back via a zoey action block, across reactive / heartbeat / cron loops](docs/architecture.png)
+
+[Quickstart](#quickstart) · [Architecture](docs/architecture.md) · [Memory model](docs/memory-model.md) · [Heartbeat loop](docs/heartbeat-loop.md) · [Live site](https://FERBIN12.github.io/zoey/)
 
 </div>
 
