@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zoey-agent"
+version = "0.1.0"
+description = "A personal AI agent that remembers you: file-based memory, a heartbeat loop, and a clear safety model. Zero dependencies."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Ferbin" }]
+keywords = ["ai", "agent", "llm", "personal-assistant", "memory", "openclaw"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Developers",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# Intentionally zero runtime dependencies — the whole runtime is stdlib.
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/FERBIN12/zoey"
+Documentation = "https://github.com/FERBIN12/zoey/blob/main/docs/architecture.md"
+
+[project.scripts]
+zoey = "zoey.cli:main"
+
+[tool.setuptools]
+packages = ["zoey"]
+
+[tool.setuptools.package-data]
+zoey = ["template/*.md"]

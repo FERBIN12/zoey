@@ -25,6 +25,16 @@ logs/
 .openclaw/
 workspace-state.json
 
+# ── Python build / caches ────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+.pytest_cache/
+.venv/
+venv/
+
 # ── Web build / deps ─────────────────────────────────────────────────
 node_modules/
 dist/

@@ -168,8 +168,15 @@
 
   <!-- CTA -->
   <section class="finale">
-    <h2 class="reveal">Build one this weekend.</h2>
-    <p class="reveal">Clone it, drop the files into your runtime, and just start talking. It writes its own identity and memory from there.</p>
+    <h2 class="reveal">Run it in 60 seconds.</h2>
+    <p class="reveal">Zero dependencies. Clone, add a key (or use your local <code>claude</code>), and just start talking. It writes its own identity and memory from there.</p>
+    <div class="codecard reveal" style="max-width:580px;margin:0 auto 30px;text-align:left">
+      <div class="code-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-title">terminal</span></div>
+<pre><code><span class="c">$</span> git clone https://github.com/FERBIN12/zoey.git &amp;&amp; cd zoey
+<span class="c">$</span> pip install -e .            <span class="c"># zero deps</span>
+<span class="c">$</span> export ANTHROPIC_API_KEY=sk-ant-...
+<span class="c">$</span> zoey init &amp;&amp; zoey chat       <span class="c"># asks who it is, then remembers</span></code></pre>
+    </div>
     <div class="hero-cta reveal">
       <a class="btn btn-primary" href="https://github.com/FERBIN12/zoey" target="_blank" rel="noopener">Star it on GitHub ★</a>
       <a class="btn btn-ghost" href="https://github.com/FERBIN12/zoey/blob/main/docs/architecture.md" target="_blank" rel="noopener">Read the architecture</a>

@@ -95,6 +95,33 @@ its sandbox while staying conservative at every boundary with the outside world.
 
 ## Runtime
 
-This kit ships the **workspace contract** (the files above) and the architecture, not a runtime.
-It's designed for [OpenClaw](https://github.com/openclaw/openclaw) (MIT) and works with any runtime
-that can inject startup context and drive heartbeat/cron loops. See the [README](../README.md) to wire it up.
+This kit ships **both** the workspace contract (the files above) *and* a small, dependency-free
+reference runtime that implements the algorithm — see `zoey/` in the repo:
+
+- `prompt.py` — the startup algorithm (which files load, in what order).
+- `agent.py` — the reactive turn and the heartbeat turn.
+- `memory.py` — the two-tier file memory.
+- `actions.py` — the `zoey` action protocol (how the agent edits its own memory).
+- `providers.py` — Anthropic / OpenAI / local `claude` / offline mock, over raw stdlib HTTP.
+
+It's intentionally tiny so you can read the whole thing. The same workspace contract also runs on
+[OpenClaw](https://github.com/openclaw/openclaw) (MIT) or any runtime that can inject startup
+context and drive heartbeat/cron loops. See the [README](../README.md) to run it.
+
+### The action protocol
+
+The reference runtime is provider-agnostic, so instead of relying on a vendor's function-calling
+API it uses a tiny text convention: to persist something, the agent ends its reply with a fenced
+block, which the runtime executes and strips before showing the reply.
+
+```zoey
+remember: the user prefers concise answers
+note: debugged the CI flake today
+identity: Name=Zoey; Emoji=🪼
+user: Name=Sam; Timezone=PST
+done-bootstrap
+```
+
+`remember` → curated `MEMORY.md`; `note` → today's daily log; `identity`/`user` → persona files;
+`done-bootstrap` → deletes `BOOTSTRAP.md` once birth is complete. It's legible by design — you can
+read exactly what the agent chose to save.
